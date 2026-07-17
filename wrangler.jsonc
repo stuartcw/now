@@ -2,5 +2,9 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "now",
   "compatibility_date": "2026-07-17",
-  "assets": { "directory": "_site" }
+  "assets": { "directory": "_site" },
+  "routes": [
+    { "pattern": "stuartwoodward.com/now", "zone_name": "stuartwoodward.com" },
+    { "pattern": "stuartwoodward.com/now/*", "zone_name": "stuartwoodward.com" }
+  ]
 }

@@ -1,7 +1,7 @@
 title: Now
 description: What I'm doing now
-url: ""
-baseurl: ""
+url: "https://stuartwoodward.com"
+baseurl: "/now"
 
 # Build settings
 markdown: kramdown
@@ -18,3 +18,4 @@ exclude:
   - Gemfile.lock
   - README.md
   - vendor/
+  - wrangler.jsonc
