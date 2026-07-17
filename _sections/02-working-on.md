@@ -1,5 +1,5 @@
 ---
 title: What I'm working on
 ---
-- Describe your main project or focus area.
-- Another thing keeping you busy.
+- Running Hanamaru K.K. A single person IT Consulting company.
+- I made this repository using Copilot.
