@@ -7,6 +7,11 @@ baseurl: ""
 markdown: kramdown
 permalink: pretty
 
+# Collections
+collections:
+  sections:
+    output: false
+
 # Exclude from processing
 exclude:
   - Gemfile
