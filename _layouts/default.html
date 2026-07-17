@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title"><a href="{{ '/' | relative_url }}">/now</a></h1>
+      <p class="site-tagline">What I'm doing now</p>
+    </div>
+  </header>
+
+  <main class="page-content">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <p>This is a <a href="https://nownownow.com/about">/now page</a>. Last updated: {{ page.updated | default: site.time | date: "%B %Y" }}.</p>
+  </footer>
+</body>
+</html>
