@@ -50,6 +50,18 @@ Then open <http://localhost:4000/now/> — note the `/now/` suffix, which `baseu
 requires. `Gemfile.lock` is committed, so local and CI resolve to the same gem
 versions.
 
+Enable the repo's git hooks once per clone:
+
+```
+git config core.hooksPath .githooks
+```
+
+This runs `.githooks/pre-commit`, which strips EXIF/GPS metadata from any
+staged photo before the commit is created — needed since `photos/` is served
+publicly and iPhone photos carry GPS coordinates by default. It requires
+`exiftool` or ImageMagick (`magick`/`convert`) on `PATH`; the commit is
+blocked with an install hint if neither is found.
+
 ## How it's published
 
 Pushing to `main` triggers a Cloudflare Workers build against this repo:

@@ -1,0 +1,43 @@
+#!/bin/sh
+# Strips EXIF/GPS metadata from any staged image in photos/ before it can be
+# committed, so location data never reaches the (public) repo history.
+# Enable once per clone with: git config core.hooksPath .githooks
+
+set -e
+
+staged_photos=$(git diff --cached --name-only --diff-filter=ACM -- 'photos/*.jpg' 'photos/*.jpeg' 'photos/*.JPG' 'photos/*.JPEG' 'photos/*.png' 'photos/*.PNG' 'photos/*.heic' 'photos/*.HEIC' 'photos/*.tif' 'photos/*.tiff')
+
+if [ -z "$staged_photos" ]; then
+  exit 0
+fi
+
+strip_with=""
+if command -v exiftool >/dev/null 2>&1; then
+  strip_with="exiftool"
+elif command -v magick >/dev/null 2>&1; then
+  strip_with="magick"
+elif command -v convert >/dev/null 2>&1; then
+  strip_with="convert"
+else
+  echo "pre-commit: no exiftool, magick, or convert found on PATH." >&2
+  echo "Install one of them (e.g. 'brew install exiftool' or 'brew install imagemagick')" >&2
+  echo "so photos/ images can have EXIF/GPS metadata stripped before commit." >&2
+  exit 1
+fi
+
+echo "$staged_photos" | while IFS= read -r file; do
+  [ -f "$file" ] || continue
+  case "$strip_with" in
+    exiftool)
+      exiftool -q -overwrite_original -all= "$file"
+      ;;
+    magick)
+      magick "$file" -strip "$file"
+      ;;
+    convert)
+      convert "$file" -strip "$file"
+      ;;
+  esac
+  git add "$file"
+  echo "pre-commit: stripped EXIF from $file"
+done
