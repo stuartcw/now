@@ -123,9 +123,9 @@ img {
 }
 
 /* ============================================================
-   iPhone landscape photo grid
-   iPhone landscape: 4032 × 3024 px  →  approx 4:3 ratio
-   (iPhone 12+ wide camera is 16:9; classic Photo mode is 4:3)
+   iPhone portrait photo grid
+   iPhone portrait: 3024 × 4032 px  →  approx 3:4 ratio
+   (classic Photo mode; iPhone 12+ wide camera is 9:16)
    The grid adapts from 1 → 2 → 3 columns.
    ============================================================ */
 .photo-grid {
@@ -140,8 +140,8 @@ img {
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--color-border);
-  /* Enforce landscape aspect ratio (4:3) */
-  aspect-ratio: 4 / 3;
+  /* Enforce portrait aspect ratio (3:4) */
+  aspect-ratio: 3 / 4;
 }
 
 .photo-grid figure img {

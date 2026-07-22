@@ -32,12 +32,12 @@ _sections/
 Each file carries a `title` in its front matter and its body below. To add a
 section, drop in a new numbered file. To reorder, renumber.
 
-Photos go in `photos/` and are referenced through `relative_url` so they resolve
-correctly under the `/now` prefix:
-
-```liquid
-<img src="{{ '/photos/example.jpg' | relative_url }}" alt="...">
-```
+Photos for the "Recently" section are picked up automatically from `photos/`.
+Drop an image file in and rebuild — `_sections/05-recently.md` loops over
+`site.static_files`, sorted newest-first by modification time, and renders one
+`<figure>` per photo with an alt attribute derived from the filename. There
+are no captions and nothing to hand-edit; SVGs in that folder are skipped, so
+it can also hold non-photo assets if needed.
 
 ## Running it locally
 

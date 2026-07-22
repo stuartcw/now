@@ -1,24 +1,17 @@
 ---
 title: Recently
 ---
+<!-- Photos are picked up automatically from the photos/ folder, newest first.
+     Just drop iPhone portrait photos in there and rebuild.
+     Suggested size: 1200 × 1600 px (3:4) or any portrait crop. -->
 <div class="photo-grid">
-  <!-- Add your iPhone landscape photos here.
-       Drop image files into the photos/ folder and reference them like:
-         src="{{ '/photos/your-photo.jpg' | relative_url }}"
-       Suggested size: 1600 × 1200 px (4:3) or any landscape crop.
-  -->
+{% assign photos = site.static_files | where_exp: "file", "file.path contains '/photos/'" %}
+{% assign photos = photos | where_exp: "file", "file.extname != '.svg'" %}
+{% assign photos = photos | sort: "modified_time" | reverse %}
+{% for photo in photos %}
+  {% assign photo_alt = photo.name | remove: photo.extname | replace: '-', ' ' | replace: '_', ' ' | capitalize %}
   <figure>
-    <img src="{{ '/photos/placeholder.svg' | relative_url }}" alt="A recent photo" loading="lazy">
-    <figcaption>Caption for this photo</figcaption>
+    <img src="{{ photo.path | relative_url }}" alt="{{ photo_alt }}" loading="lazy">
   </figure>
-
-  <figure>
-    <img src="{{ '/photos/placeholder.svg' | relative_url }}" alt="Another recent photo" loading="lazy">
-    <figcaption>Caption for this photo</figcaption>
-  </figure>
-
-  <figure>
-    <img src="{{ '/photos/placeholder.svg' | relative_url }}" alt="Yet another photo" loading="lazy">
-    <figcaption>Caption for this photo</figcaption>
-  </figure>
+{% endfor %}
 </div>
