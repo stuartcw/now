@@ -2,6 +2,12 @@
 # Strips EXIF/GPS metadata from any staged image in photos/ before it can be
 # committed, so location data never reaches the (public) repo history.
 # Enable once per clone with: git config core.hooksPath .githooks
+#
+# This strips the EXIF Orientation tag too, with no attempt to preserve or
+# bake in the rotation it describes. Only stage photos whose pixel data is
+# already correctly oriented (not relying on that tag to display right) —
+# otherwise they'll render sideways once staged, with no metadata left to
+# recover the correct orientation from afterward.
 
 set -e
 

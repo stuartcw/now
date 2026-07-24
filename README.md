@@ -53,7 +53,10 @@ This runs `.githooks/pre-commit`, which strips EXIF/GPS metadata from any
 staged photo before the commit is created — needed since `photos/` is served
 publicly and iPhone photos carry GPS coordinates by default. It requires
 `exiftool` or ImageMagick (`magick`/`convert`) on `PATH`; the commit is
-blocked with an install hint if neither is found.
+blocked with an install hint if neither is found. The strip removes the
+EXIF Orientation tag too, with no rotation applied to compensate — only
+stage photos that are already correctly oriented without depending on that
+tag, or they'll render sideways once committed.
 
 ## How it's published
 
