@@ -17,23 +17,16 @@ A [Jekyll](https://jekyllrb.com) static site with no plugins or JavaScript.
 
 Each part of the page is a separate Markdown file in `_sections/`, exposed as a
 Jekyll collection with `output: false`. `index.md` sorts them by path and
-concatenates them, so filenames control the running order:
+concatenates them, so filenames control the running order.
 
-```
-_sections/
-  01-where.md
-  02-working-on.md
-  03-learning.md
-  04-reading.md
-  05-recently.md
-  06-about-this-page.md
-```
-
+Files are named `NN-slug.md`, where `NN` is a two-digit order prefix and
+`slug` is a short, descriptive name for the section. `99-` is reserved for a
+section that should always render last regardless of what else is added.
 Each file carries a `title` in its front matter and its body below. To add a
 section, drop in a new numbered file. To reorder, renumber.
 
 Photos for the "Recently" section are picked up automatically from `photos/`.
-Drop an image file in and rebuild — `_sections/05-recently.md` loops over
+Drop an image file in and rebuild — that section loops over
 `site.static_files`, sorted newest-first by modification time, and renders one
 `<figure>` per photo with an alt attribute derived from the filename. There
 are no captions and nothing to hand-edit; SVGs in that folder are skipped, so
