@@ -32,6 +32,16 @@ Drop an image file in and rebuild — that section loops over
 are no captions and nothing to hand-edit; SVGs in that folder are skipped, so
 it can also hold non-photo assets if needed.
 
+The "Where I am" section reads from `_includes/location.txt`, kept separate
+from `_sections/01-where.md` so it's a single obvious file to update. If its
+contents contain `/maps/embed` — i.e. it's the URL from Google Maps' *Share
+or embed this location > Embed a map* tab, not a regular share link — a map
+is embedded. Anything else is shown as plain text. This distinction matters:
+Google blocks regular `google.com/maps/...` and `maps.app.goo.gl/...` share
+links from loading in an iframe on another site (`X-Frame-Options`), so only
+the dedicated embed URL actually renders a map; a regular link falls back to
+plain text.
+
 ## Running it locally
 
 ```

@@ -123,6 +123,22 @@ img {
 }
 
 /* ============================================================
+   Location map embed
+   ============================================================ */
+.map-embed {
+  margin-top: var(--spacing);
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.map-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ============================================================
    iPhone portrait photo grid
    iPhone portrait: 3024 × 4032 px  →  approx 3:4 ratio
    (classic Photo mode; iPhone 12+ wide camera is 9:16)
